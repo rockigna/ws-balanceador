@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
                 v.memory = 512
                 v.cpus =2
             end
+            balanceador.vm.provision "shell", inline: "service apache2 restart", run: "always"
         end                                                              
 
 ### este es la primera web 
@@ -20,6 +21,7 @@ Vagrant.configure("2") do |config|
                 v.memory = 512
                 v.cpus = 2
             end
+             ###primera.vm.synced_folder "www/", "/var/www"
         end
 
 ### esta es la segunda web (clon de la primera)
@@ -33,5 +35,7 @@ Vagrant.configure("2") do |config|
                 v.memory = 512
                 v.cpus = 2
             end
+            segunda.vm.synced_folder "www/", "/var/www"
         end
+        ###segunda.vm.synced_folder "www/", "/var/www"
     end
